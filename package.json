@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-lab4",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "node --watch main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrr7rr/nodejs-lab4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrr7rr/nodejs-lab4/issues"
+  },
+  "homepage": "https://github.com/hrr7rr/nodejs-lab4#readme",
+  "dependencies": {
+    "commander": "^15.0.0"
+  }
+}
