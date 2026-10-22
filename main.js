@@ -14,3 +14,13 @@ program
 program.parse();
 
 const options = program.opts();
+
+fs.access(options.input, fs.contants.F_OK, (err) => {
+   if (err) {
+       console.error('Не знайдено вхідний файл')ж
+       process.exitCode = 1;
+       return;
+}
+
+  startServer();
+});
