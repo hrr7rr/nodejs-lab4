@@ -34,12 +34,39 @@ fs.access(options.input, fs.contants.F_OK, (err) => {
 
 function startServer() {
     const server = http.createServer((req, res) => {
+    fs.readFile(options.input, 'utf8', (err, content) => {
+        if (err) {
+            res.writeHead(500, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify({ error: 'Помилка читання файлу' }));
+            return;
+        }
+
+        let flights = [];
+
+        try {
+            const lines = content.split(/\r?\n/);
+
+            for (const line of lines) {
+                if (line.trim() !== '') {
+                    flights.push(JSON.parse(line));
+                }
+            }
+        } catch (err) {
+            res.writeHead(500, {
+                'Content-Type': 'application/json; charset=utf-8'
+            });
+            res.end(JSON.stringify({ error: 'Пошкоджений файл даних' }));
+            return;
+        }
+
         res.writeHead(200, {
             'Content-Type': 'application/json; charset=utf-8'
         });
-
-        res.end(JSON.stringify({ message: 'Сервер працює' }));
+        res.end(JSON.stringify(flights));
     });
+});
 
     server.on('error', (err) => {
         console.error('Помилка запуску сервера:', err.message);
